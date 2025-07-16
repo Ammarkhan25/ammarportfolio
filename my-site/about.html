@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Ammar</title>
+  <link rel="stylesheet" href="about-style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+    integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"
+    integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+  <div id="tsparticles"></div>
+
+  <header>
+    <nav>
+      <div class="logo">Ammar</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+      </ul>
+      <div class="burger" onclick="toggleMenu()">☰</div>
+      <label class="dark-toggle">
+        <input type="checkbox" id="darkModeToggle">
+        🌙
+      </label>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-wrapper">
+        <div class="hero-content">
+          <h1>About Me</h1>
+          <p>I’m Ammar, a passionate student developer who enjoys building clean, modern web interfaces and
+            experimenting with new technologies.</p>
+        </div>
+        <div class="hero-image">
+          <img src="src/ready.png" alt="Ammar" />
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <h2>Who I Am</h2>
+      <p>I’m deeply interested in front-end development, especially working with JavaScript, CSS animations, and
+        creative UI components. I also like playing with backend tools like Node.js.</p>
+    </section>
+
+    <section class="reveal">
+      <h2>My Goals</h2>
+      <p>To become a full-stack developer who can bring ideas to life — from design to deployment. I aim to work on
+        projects that solve real problems and delight users.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Ammar. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('active');
+    }
+
+    const toggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    toggle?.addEventListener('change', () => {
+      body.classList.toggle('dark');
+      localStorage.setItem('darkMode', body.classList.contains('dark'));
+    });
+
+    if (localStorage.getItem('darkMode') === 'true') {
+      body.classList.add('dark');
+      toggle.checked = true;
+    }
+
+    function checkRevealSections() {
+      const sections = document.querySelectorAll('.reveal');
+      sections.forEach(sec => {
+        const top = window.scrollY;
+        const offset = sec.offsetTop - 500;
+        const height = sec.offsetHeight;
+        if (top > offset && top < offset + height) {
+          sec.classList.add('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', checkRevealSections);
+    window.addEventListener('load', checkRevealSections);
+
+    tsParticles.load("tsparticles", {
+      fullScreen: { enable: false },
+      particles: {
+        number: { value: 70 },
+        size: { value: 4 },
+        move: { enable: true, speed: 1.2 },
+        color: { value: ["#6366f1", "#4338ca", "#7c3aed", "#a78bfa"] },
+        links: {
+          enable: true,
+          color: "#7c3aed",
+          distance: 120,
+          opacity: 0.4
+        }
+      },
+      background: { color: "transparent" }
+    });
+  </script>
+  <script src="gsap.js"></script>
+</body>
+
+</html>
